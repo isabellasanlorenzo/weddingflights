@@ -3,4 +3,14 @@
 .ruff/
 .idea
 .venv
+.env
 .ipynb_checkpoints/
+guests.csv
+__pycache__/
+*.pyc
+.DS_Store
+
+# no judging
+protoc.exe
+
+dist/
