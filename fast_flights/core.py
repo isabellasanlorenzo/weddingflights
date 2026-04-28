@@ -245,12 +245,10 @@ def parse_response(
             )
 
             # Get departure & arrival time
-            dp_ar_node = item.css("span.mv1WYe div")
             try:
-                departure_time = dp_ar_node[0].text(strip=True)
-                arrival_time = dp_ar_node[1].text(strip=True)
-            except IndexError:
-                # sometimes this is not present
+                departure_time = safe(item.css_first('span[aria-label^="Departure time:"] span[role="text"]')).text(strip=True)
+                arrival_time = safe(item.css_first('span[aria-label^="Arrival time:"] span[role="text"]')).text(strip=True)
+            except Exception:
                 departure_time = ""
                 arrival_time = ""
 
@@ -258,10 +256,10 @@ def parse_response(
             time_ahead = safe(item.css_first("span.bOzv6")).text()
 
             # Get duration
-            duration = safe(item.css_first("li div.Ak5kof div")).text()
+            duration = safe(item.css_first("div.gvkrdb.AdWm1c.tPgKwe.ogfYpf")).text(strip=True)
 
             # Get flight stops
-            stops = safe(item.css_first(".BbR8Ec .ogfYpf")).text()
+            stops = safe(item.css_first(".EfT7Ae span.ogfYpf")).text(strip=True)
 
             # Get delay
             delay = safe(item.css_first(".GsCCve")).text() or None
