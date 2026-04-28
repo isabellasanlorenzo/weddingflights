@@ -26,7 +26,7 @@ asyncio.run(main())
 """
 
 
-def fallback_playwright_fetch(params: dict) -> Any:
+def fallback_playwright_fetch(params: dict, request_kwargs=None) -> Any:
     client = Client(impersonate="chrome_100", verify=False)
 
     res = client.post(
